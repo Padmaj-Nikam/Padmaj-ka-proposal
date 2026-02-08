@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>One Last Thing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #eef0f4;
+      --card: rgba(255,255,255,0.85);
+      --text: #1c1e24;
+      --muted: #6b7280;
+      --accent: #111827;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #f3f4f6, var(--bg));
+      font-family: "Inter", system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+    }
+
+    /* 🔊 Sound Toggle */
+    .audio-toggle {
+      position: fixed;
+      top: 28px;
+      right: 28px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(0,0,0,0.25);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .audio-toggle span {
+      font-size: 0.85rem;
+    }
+
+    /* Modal */
+    .modal {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 48px 36px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+    }
+
+    .modal small {
+      color: var(--muted);
+      letter-spacing: 0.4px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      margin: 16px 0 32px;
+    }
+
+    /* Icons */
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .icons img {
+      width: 64px;
+      height: 64px;
+    }
+
+    .instruction {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    button {
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.25);
+      background: white;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button.yes {
+      background: var(--accent);
+      color: white;
+    }
+
+    button.no {
+      background: white;
+      color: var(--text);
+    }
+
+    .message {
+      margin-top: 28px;
+      font-size: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔊 Audio -->
+  <div class="audio-toggle" id="audioToggle">
+    <span id="audioIcon">🔈</span>
+    <span>Sound</span>
+  </div>
+
+  <audio id="music" loop>
+    <source src="assets/audio/page5-valentine.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="modal">
+    <small>One last thing…</small>
+    <h1>Will you be my Valentine? 🌹</h1>
+
+    <div class="icons">
+      <img src="assets/images/flo.png" alt="Flo">
+      <span>→</span>
+      <img src="assets/images/whatsapp.png" alt="WhatsApp">
+    </div>
+
+    <div class="instruction">
+      If it’s a yes, send me your Flo partner code on WhatsApp.
+    </div>
+
+    <div class="buttons">
+      <button class="yes" id="yesBtn">Yes</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+
+    <div class="message" id="message">
+      💌 I’ll be waiting.
+    </div>
+  </div>
+
+  <script>
+    // Audio
+    const music = document.getElementById("music");
+    const toggle = document.getElementById("audioToggle");
+    const icon = document.getElementById("audioIcon");
+    let playing = false;
+
+    toggle.onclick = () => {
+      if (!playing) {
+        music.volume = 0.4;
+        music.play();
+        icon.textContent = "🔊";
+      } else {
+        music.pause();
+        icon.textContent = "🔈";
+      }
+      playing = !playing;
+    };
+
+    // Buttons
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const msg = document.getElementById("message");
+
+    let noScale = 1;
+    let yesScale = 1;
+
+    noBtn.onclick = () => {
+      noScale -= 0.15;
+      yesScale += 0.1;
+
+      noBtn.style.transform = `scale(${noScale})`;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      if (noScale <= 0.2) {
+        noBtn.style.display = "none";
+      }
+    };
+
+    yesBtn.onclick = () => {
+      msg.style.display = "block";
+    };
+  </script>
+
+</body>
+</html>

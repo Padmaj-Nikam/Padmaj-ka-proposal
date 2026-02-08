@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Letters I Never Sent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #14161b;
+      --paper: #f4f5f7;
+      --paper-soft: #eceef2;
+      --text-dark: #1c1e24;
+      --silver-soft: #9aa0aa;
+      --border: rgba(255,255,255,0.18);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #2c2f38 0%, var(--bg-dark) 70%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 720px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--silver-soft);
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+
+    .letters {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .letter {
+      background: linear-gradient(180deg, var(--paper), var(--paper-soft));
+      border-radius: 16px;
+      padding: 22px 26px;
+      text-align: left;
+      color: var(--text-dark);
+      cursor: pointer;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.05);
+    }
+
+    .letter-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .letter-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.9s ease;
+    }
+
+    .letter.open .letter-content {
+      max-height: 800px;
+    }
+
+    .letter p {
+      margin: 14px 0;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .emphasis {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    .cta {
+      margin-top: 56px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.8s ease;
+    }
+
+    .cta.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta a {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.06);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🎵 Page 3 Music -->
+  <audio id="letterMusic" loop>
+    <source src="assets/audio/page3-letters.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>Letters I Never Sent</h1>
+    <p class="subtitle">Things I didn’t know how to say then.</p>
+
+    <div class="letters">
+
+      <div class="letter">
+        <div class="letter-title">Letter One</div>
+        <div class="letter-content">
+          <p class="emphasis">I didn’t say this then…</p>
+          <p>Back then, I didn’t fully understand your efforts. I was so caught up in my own head that I couldn’t see the running, the waiting, the tears - the quiet ways you showed up for me.</p>
+          <p>It wasn’t because I took you for granted. It was because I was focused on things that mattered less, instead of you - who mattered most.</p>
+          <p>Over time, I learned the value of effort because I started putting it in myself. I understood that relationships aren’t always equal in every moment.</p>
+          <p class="emphasis">…but I know it now.</p>
+        </div>
+      </div>
+
+      <div class="letter">
+        <div class="letter-title">Letter Two</div>
+        <div class="letter-content">
+          <p class="emphasis">I didn’t say this then…</p>
+          <p>Trust didn’t come easily to me. And I know my past made that harder - for both of us.</p>
+          <p>But you are the reason I learned what real trust feels like. From the very beginning, my intention was never to hurt you.</p>
+          <p>You made me more aware, more honest, more human.</p>
+          <p class="emphasis">…but I know it now.</p>
+        </div>
+      </div>
+
+      <div class="letter">
+        <div class="letter-title">Letter Three</div>
+        <div class="letter-content">
+          <p class="emphasis">I didn’t say this then…</p>
+          <p>I’ve always chased perfection. But lately, I’ve learned that nothing real is perfect - and that’s what makes it beautiful.</p>
+          <p>You are beautiful not despite your imperfections, but because of them. And the same is true for us.</p>
+          <p class="emphasis">…but I know it now.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta" id="cta">
+      <a href="page4.html">Read one last thing</a>
+    </div>
+  </div>
+
+  <script>
+    const letters = document.querySelectorAll(".letter");
+    const cta = document.getElementById("cta");
+    const music = document.getElementById("letterMusic");
+
+    let openedCount = 0;
+    let musicStarted = false;
+
+    letters.forEach(letter => {
+      letter.addEventListener("click", () => {
+        if (!musicStarted) {
+          music.volume = 0.45;
+          music.play().catch(() => {});
+          musicStarted = true;
+        }
+
+        if (!letter.classList.contains("open")) {
+          letter.classList.add("open");
+          openedCount++;
+        }
+
+        if (openedCount >= 2) {
+          cta.classList.add("show");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

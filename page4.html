@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Still Her</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-light: #e6e7eb;
+      --bg-soft: #d8dae0;
+      --text-dark: #1c1e24;
+      --text-soft: #5f6470;
+      --accent: #b8bcc6;
+      --glass: rgba(255,255,255,0.7);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: linear-gradient(180deg, var(--bg-light), var(--bg-soft));
+      color: var(--text-dark);
+    }
+
+    /* 🔊 Improved Sound Toggle */
+    .audio-toggle {
+      position: fixed;
+      top: 28px;
+      right: 28px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--glass);
+      border: 1px solid rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: all 0.25s ease;
+    }
+
+    .audio-toggle:hover {
+      background: rgba(255,255,255,0.9);
+      transform: translateY(-1px);
+    }
+
+    .audio-toggle span.icon {
+      font-size: 1.1rem;
+    }
+
+    .audio-toggle span.label {
+      font-size: 0.85rem;
+      letter-spacing: 0.4px;
+      color: var(--text-dark);
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.4rem;
+      margin-bottom: 48px;
+    }
+
+    .section {
+      margin: 72px 0;
+    }
+
+    .photo {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto 24px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    }
+
+    .photo img {
+      width: 100%;
+      display: block;
+    }
+
+    .caption {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-top: 12px;
+    }
+
+    .divider {
+      width: 2px;
+      height: 80px;
+      background: var(--accent);
+      margin: 64px auto;
+      opacity: 0.6;
+    }
+
+    .text-block {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .text-block p {
+      margin: 14px 0;
+    }
+
+    .highlight {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      margin-top: 56px;
+    }
+
+    .cta {
+      margin-top: 96px;
+    }
+
+    .cta a {
+      display: inline-block;
+      padding: 14px 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.25);
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.6);
+      transition: background 0.3s ease;
+    }
+
+    .cta a:hover {
+      background: rgba(255,255,255,0.85);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔊 Sound Toggle -->
+  <div class="audio-toggle" id="audioToggle" aria-label="Toggle music">
+    <span class="icon" id="audioIcon">🔈</span>
+    <span class="label" id="audioLabel">Sound</span>
+  </div>
+
+  <!-- 🎵 Page 4 Music -->
+  <audio id="page4Music" loop>
+    <source src="assets/audio/page4-still-her.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+
+    <h1>Some things change.<br>Some things don’t.</h1>
+
+    <!-- First Hug -->
+    <div class="section">
+      <div class="photo">
+        <img src="assets/images/hug-then.jpg" alt="Us, back then">
+      </div>
+      <div class="caption">
+        Back then, everything was new.<br>
+        We were learning how to hold each other.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Bridge -->
+    <div class="section">
+      <div class="text-block">
+        <p>We grew.</p>
+        <p>We changed.</p>
+        <p>We didn’t always get it right.</p>
+
+        <p>
+          But with you, I learned how to slow down.<br>
+          How to listen.<br>
+          How to stay.
+        </p>
+
+        <p>
+          Loving you stopped feeling like a moment<br>
+          and started feeling like a decision.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Second Hug -->
+    <div class="section">
+      <div class="photo">
+        <img src="assets/images/hug-now.jpg" alt="Us, now">
+      </div>
+      <div class="caption">
+        This hug isn’t about excitement.<br>
+        It’s about certainty.
+      </div>
+    </div>
+
+    <!-- Final Line -->
+    <div class="highlight">
+      After everything<br>
+      it’s still you, <strong>Tejashvi</strong>.
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <a href="page5.html">So here’s my question.</a>
+    </div>
+
+  </div>
+
+  <!-- 🔊 Audio Logic -->
+  <script>
+    const music = document.getElementById("page4Music");
+    const toggle = document.getElementById("audioToggle");
+    const icon = document.getElementById("audioIcon");
+
+    let isPlaying = false;
+
+    toggle.addEventListener("click", () => {
+      if (!isPlaying) {
+        music.volume = 0;
+        music.play().then(() => {
+          let vol = 0;
+          const fade = setInterval(() => {
+            vol += 0.04;
+            if (vol >= 0.45) {
+              music.volume = 0.45;
+              clearInterval(fade);
+            } else {
+              music.volume = vol;
+            }
+          }, 120);
+        });
+        icon.textContent = "🔊";
+        isPlaying = true;
+      } else {
+        music.pause();
+        icon.textContent = "🔈";
+        isPlaying = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
