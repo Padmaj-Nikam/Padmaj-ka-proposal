@@ -2,15 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Just One Question</title>
+  <title>Bade Aache Lagate Hain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-dark: #0b0c0f;
+      --bg-mid: #121318;
+      --silver: #cfd3da;
+      --silver-soft: #9aa0aa;
+      --glass: rgba(255, 255, 255, 0.08);
+      --border-glass: rgba(255, 255, 255, 0.15);
+    }
+
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
+      font-family: "Inter", system-ui, sans-serif;
+      background: radial-gradient(
+          circle at top,
+          #1a1c22 0%,
+          var(--bg-dark) 60%
+        );
+      color: var(--silver);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -22,6 +40,7 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -29,139 +48,212 @@
     }
 
     .modal {
-      background: #111827;
-      padding: 32px;
-      border-radius: 12px;
+      background: var(--glass);
+      border: 1px solid var(--border-glass);
+      padding: 36px;
+      border-radius: 18px;
       max-width: 420px;
       width: 90%;
       text-align: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
     }
 
     .modal h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
+      margin: 0 0 12px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.7rem;
+      color: #ffffff;
+      letter-spacing: 0.3px;
     }
 
     .modal p {
       font-size: 0.95rem;
-      color: #d1d5db;
-      line-height: 1.5;
+      color: var(--silver-soft);
+      line-height: 1.6;
     }
 
     .modal-buttons {
-      margin-top: 24px;
+      margin-top: 28px;
       display: flex;
-      gap: 12px;
+      gap: 14px;
       justify-content: center;
     }
 
     .modal button {
-      padding: 10px 18px;
-      border-radius: 8px;
-      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border-glass);
+      background: transparent;
+      color: var(--silver);
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
     }
 
-    .proceed {
-      background: #22c55e;
-      color: #022c22;
+    .modal button:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    .no-proceed {
-      background: #374151;
-      color: #e5e7eb;
-    }
-
-    /* Hero Section */
+    /* Hero */
     .hero {
       text-align: center;
       max-width: 420px;
       width: 90%;
       display: none;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 12px;
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+      color: #ffffff;
     }
 
     .hero p {
-      color: #d1d5db;
-      font-size: 1rem;
-      margin-bottom: 24px;
+      font-size: 0.95rem;
+      color: var(--silver-soft);
+      margin-bottom: 28px;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     input {
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border-glass);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
       font-size: 1rem;
       outline: none;
+      transition: border 0.3s ease, background 0.3s ease;
+    }
+
+    input::placeholder {
+      color: var(--silver-soft);
+    }
+
+    input:focus {
+      border-color: var(--silver);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     button.submit {
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: 999px;
+      border: 1px solid var(--silver);
+      background: transparent;
+      color: #ffffff;
+      font-size: 0.95rem;
       cursor: pointer;
-      background: #f472b6;
-      color: #4a044e;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    button.submit:hover {
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .error {
-      margin-top: 10px;
-      color: #fca5a5;
-      font-size: 0.9rem;
+      margin-top: 12px;
+      color: #ff9a9a;
+      font-size: 0.85rem;
+      min-height: 1.2em;
+    }
+
+    .transition-text {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: var(--silver);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      font-style: italic;
+    }
+
+    .transition-text.show {
+      opacity: 1;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- 🎵 Audio Layers -->
+  <audio id="introMusic" loop>
+    <source src="assets/audio/index-background.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="successMusic">
+    <source src="assets/audio/index-success.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="errorMusic">
+    <source src="assets/audio/index-error.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- Disclaimer Modal -->
   <div class="modal-overlay" id="disclaimerModal">
     <div class="modal">
       <h2>Before you continue</h2>
       <p>
-        This page is intentional, personal, and meant for one specific person.
-        If you’re not here for the right reason, it’s better to stop now.
+        This space is intentional and personal.  
+        It’s meant for one specific person.  
+        If you continue, please do so slowly.
       </p>
 
       <div class="modal-buttons">
-        <button class="no-proceed" onclick="handleNoProceed()">No, take me back</button>
-        <button class="proceed" onclick="handleProceed()">I understand</button>
+        <button onclick="handleNoProceed()">I’ll stop here</button>
+        <button onclick="handleProceed()">I understand</button>
       </div>
     </div>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <div class="hero" id="heroSection">
-    <h1>Hi there 👋</h1>
-    <p>Just a quick check before we go any further.</p>
+    <h1>Hi</h1>
+    <p>Just a small check before we go any further.</p>
 
     <form onsubmit="handleSubmit(event)">
-      <input 
-        type="text" 
-        id="nameInput" 
-        placeholder="Enter your name" 
-        required 
+      <input
+        type="text"
+        id="nameInput"
+        placeholder="Your name"
+        required
+        oninput="clearError()"
+        onfocus="startIntroMusic()"
       />
-      <button type="submit" class="submit">Continue</button>
+      <button type="submit" class="submit" id="submitBtn">Continue</button>
     </form>
 
     <div class="error" id="errorMessage"></div>
+    <div class="transition-text" id="transitionText">
+      Hey Buttercup, walk with me down this memory lane, I promise it’s worth it.
+    </div>
   </div>
 
   <script>
+    let introStarted = false;
+
+    const introMusic = document.getElementById("introMusic");
+    const successMusic = document.getElementById("successMusic");
+    const errorMusic = document.getElementById("errorMusic");
+
     function handleProceed() {
       document.getElementById("disclaimerModal").style.display = "none";
       document.getElementById("heroSection").style.display = "block";
@@ -172,19 +264,50 @@
       document.body.style.background = "#000";
     }
 
+    function clearError() {
+      document.getElementById("errorMessage").textContent = "";
+    }
+
+    function stopAllMusic() {
+      [introMusic, successMusic, errorMusic].forEach(m => {
+        m.pause();
+        m.currentTime = 0;
+      });
+    }
+
+    function startIntroMusic() {
+      if (introStarted) return;
+      introMusic.volume = 0.45;
+      introMusic.play().catch(() => {});
+      introStarted = true;
+    }
+
     function handleSubmit(event) {
       event.preventDefault();
 
-      const name = document.getElementById("nameInput").value.trim();
+      const name = document.getElementById("nameInput").value.trim().toLowerCase();
       const error = document.getElementById("errorMessage");
+      const transition = document.getElementById("transitionText");
+      const button = document.getElementById("submitBtn");
 
-      if (name.toLowerCase() !== "tejashvi") {
+      if (name !== "tejashvi") {
+        stopAllMusic();
+        errorMusic.volume = 0.6;
+        errorMusic.play().catch(() => {});
         error.textContent = "This proposal is not meant for you.";
         return;
       }
 
-      // Success: redirect to page 2
-      window.location.href = "page2.html";
+      stopAllMusic();
+      successMusic.volume = 0.6;
+      successMusic.play().catch(() => {});
+
+      button.disabled = true;
+      transition.classList.add("show");
+
+      setTimeout(() => {
+        window.location.href = "page2.html";
+      }, 7000);
     }
   </script>
 
